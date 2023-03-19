@@ -1,34 +1,52 @@
-/*
-  This is your site JavaScript code - you can add interactivity!
-*/
 
-// Print a message in the browser's dev tools console each time the page loads
-// Use your menus or right-click / control-click and choose "Inspect" > "Console"
-console.log("Hello 🌎");
+const input=document.querySelector("#guess");
+const button=document.querySelector("#btn");
+const answer=Math.floor(Math.random() *70) +1;
+console.log(answer);
 
-/* 
-Make the "Click me!" button move when the visitor clicks it:
-- First add the button to the page by following the steps in the TODO 🚧
-*/
-const btn = document.querySelector("button"); // Get the button from the page
-if (btn) { // Detect clicks on the button
-  btn.onclick = function () {
-    // The 'dipped' class in style.css changes the appearance on click
-    btn.classList.toggle("dipped");
-  };
+input.addEventListener("keypress",function(e){
+    if(e.keyCode===13){play();}
+})
+
+button.addEventListener("click",play);
+
+function play(){
+    const userNumber=document.querySelector("#guess").value;
+    
+    if(userNumber < 50 || userNumber > 70){
+        Swal.fire({
+            icon: 'error',
+            title: 'Ooh...',
+            text: 'Entre numero entre 50 y 70!',
+            
+          })
+    }
+    else if (isNaN(userNumber)){
+        Swal.fire({
+            icon: 'error',
+            title: 'Ooh!',
+            text: 'Es nesesario introducir un numero!',
+           
+          })
+    }
+    else{
+        if(userNumber>answer){
+            Swal.fire('Entre arriba')
+
+        }
+        else if(userNumber<answer){
+            Swal.fire('Entre abajo')
+        }
+        else{
+            Swal.fire({
+                title: 'Gane!',
+                text: 'Victoria',
+                imageUrl: 'https://cdn.glitch.global/2e323160-aa2c-47c1-b730-9dff8b0b4bfe/win.jpg?v=1679258268512',
+                imageWidth: 600,
+                imageHeight: 400,
+                imageAlt: 'Victoria',
+              })
+             
+        }
+    }
 }
-
-
-// ----- GLITCH STARTER PROJECT HELPER CODE -----
-
-// Open file when the link in the preview is clicked
-let goto = (file, line) => {
-  window.parent.postMessage(
-    { type: "glitch/go-to-line", payload: { filePath: file, line: line } }, "*"
-  );
-};
-// Get the file opening button from its class name
-const filer = document.querySelectorAll(".fileopener");
-filer.forEach((f) => {
-  f.onclick = () => { goto(f.dataset.file, f.dataset.line); };
-});
