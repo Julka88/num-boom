@@ -1,8 +1,7 @@
 
 const input=document.querySelector("#guess");
 const button=document.querySelector("#btn");
-const answer=Math.floor(Math.random() *70) +1;
-console.log(answer);
+const answer=Math.floor(Math.random() * (70-50+1)) +50;
 
 input.addEventListener("keypress",function(e){
     if(e.keyCode===13){play();}
@@ -30,11 +29,11 @@ function play(){
           })
     }
     else{
-        if(userNumber>answer){
+        if(userNumber<answer){
             Swal.fire('Entre arriba')
 
         }
-        else if(userNumber<answer){
+        else if(userNumber>answer){
             Swal.fire('Entre abajo')
         }
         else{
