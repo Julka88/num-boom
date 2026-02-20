@@ -40,7 +40,7 @@ function play(){
             Swal.fire({
                 title: 'Gane!',
                 text: 'Victoria',
-                imageUrl: 'https://cdn.glitch.global/2e323160-aa2c-47c1-b730-9dff8b0b4bfe/win.jpg?v=1679258268512',
+                imageUrl: './win.jpg',
                 imageWidth: 600,
                 imageHeight: 400,
                 imageAlt: 'Victoria',
